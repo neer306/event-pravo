@@ -1,0 +1,49 @@
+.event {
+    text-decoration: none;
+    color: #292d38;
+    margin: 0 0 2px;
+    display: block;
+    background: #FFF;
+
+    &:hover {
+        //text-decoration: none;
+    }
+}
+
+.event__box {
+    display: flex;
+    align-items: center;
+}
+
+.event__photo {
+    height: 110px;
+}
+
+.event__content {
+    padding: 15px 16px;
+
+    b {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 20px;
+        display: block;
+        &:hover {
+            text-decoration: underline;
+
+        }
+    }
+
+    span {
+        display: block;
+        font-weight: 200;
+        color: #7E8C8D;
+    }
+}
+
+.event__photo {
+    margin-right: 24px;
+}
+
+.event__date {
+    font-weight: 200;
+}

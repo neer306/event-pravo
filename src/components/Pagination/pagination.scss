@@ -1,0 +1,42 @@
+.pagination {
+    padding: 25px 0 0;
+    text-align: center;
+    font-size: 0;
+}
+
+.pagination__button {
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: top;
+    padding: 0 9px;
+    height: 24px;
+    background-color: #f4f4f7;
+    color: #292D38;
+    text-decoration: none;
+    font: 12px/24px Arial, sans-serif;
+    transition: all .5s ease;
+
+    &:hover {
+        background: #e5e8e8;
+    }
+
+    &_active {
+        background-color: #1aacff;
+        cursor: default;
+        color: #FFF;
+
+        &:hover {
+            background-color: #1aacff;
+        }
+    }
+
+    &_control {
+        margin: 0 3px;
+        width: 24px;
+        color: #1aacff;
+
+        &:hover {
+            background-color: transparent;
+        }
+    }
+}

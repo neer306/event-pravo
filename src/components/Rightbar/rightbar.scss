@@ -1,9 +1,19 @@
 .rightbar__banner {
     margin: 0 0 32px;
+    display: block;
 }
 
 .rightbar__box {
     margin: 0 0 32px;
     padding: 16px;
     background: #FFF;
+}
+
+.rightbar {
+    padding-left: 32px;
+    flex: 0 0 240px;
+}
+
+.rightbar__form {
+    margin: 0 0 32px;
 }

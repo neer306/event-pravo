@@ -1,5 +1,5 @@
 .banner {
-    background-image: url("https://storage.pravo.ru/image/54/27116.jpg");
+    height: 112px;
 }
 
 header {
@@ -14,6 +14,8 @@ nav {
 }
 
 .nav__item {
+    font-weight: 500;
+    line-height: 64px;
     border-bottom: 4px solid #8dd6ff;
     display: inline-block;
     vertical-align: top;
@@ -28,9 +30,15 @@ nav {
     box-sizing: border-box;
     transition: all .3s ease;
 
-    &._active,
+    &_active,
     &:hover {
         opacity: 1;
         border-bottom: 4px solid #8dd6ff;
     }
+}
+
+.sublogo,
+.logo {
+    display: block;
+    height: 64px;
 }

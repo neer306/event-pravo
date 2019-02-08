@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import Input from "../Input/Input";
 import './rightbar.scss';
-import Button from "../Button/button";
+import Button from "../Button/Button";
 
 
 class Rightbar extends Component {
 
     render() {
         return (
-            <div>
+            <div className={'rightbar'}>
                 <a href='#' className={'rightbar__banner'}>
-
+                    <img src={'../../assets/images/rightbar-banner.jpg'} />
                 </a>
                 <h3>Реклама</h3>
                 <div className={'rightbar__box'}>
@@ -19,7 +19,7 @@ class Rightbar extends Component {
                     </p>
                 </div>
                 <h3>Подписаться на новости</h3>
-                <form className={''}>
+                <form className={'rightbar__form'}>
                     <Input placeholder={'Введите e-mail'}/>
                     <Button type={'submit'}>Подписаться</Button>
                 </form>
