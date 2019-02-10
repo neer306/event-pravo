@@ -1,9 +1,7 @@
 import React from 'react';
 import './event.scss';
+import { monthNamesGenitive } from '../../constants';
 
-const monthNamesGenitive = ["Января", "Февраля", "Марта", "Апреля", "Мая", "Июня",
-    "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря"
-];
 
 const Event = ({ event }) => {
     return (

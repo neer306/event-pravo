@@ -10,7 +10,8 @@ class Rightbar extends Component {
         return (
             <div className={'rightbar'}>
                 <a href='#' className={'rightbar__banner'}>
-                    <img src={'../../assets/images/rightbar-banner.jpg'} />
+                    <img className={'rightbar__banner-img'} src={'../../assets/images/rightbar-banner.jpg'} />
+                    <img className={'rightbar__banner-img-m'} src={'../../assets/images/header-banner.gif'} />
                 </a>
                 <h3>Реклама</h3>
                 <div className={'rightbar__box'}>

@@ -42,3 +42,9 @@ nav {
     display: block;
     height: 64px;
 }
+
+@media (max-width: 1023px) {
+    header {
+        display: none;
+    }
+}

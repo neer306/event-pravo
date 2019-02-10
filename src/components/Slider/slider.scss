@@ -1,0 +1,24 @@
+.slider-container {
+    display: flex;
+    align-items: center;
+}
+
+.slider-list {
+    display: flex;
+}
+
+.slider-control {
+    cursor: pointer;
+    vertical-align: middle;
+    border: none;
+    height: 36px;
+    width: 19px;
+    opacity: .8;
+    transition: opacity .4s;
+    margin: 0 4px;
+
+    &:hover {
+        color: #1aacff;
+        opacity: 1;
+    }
+}

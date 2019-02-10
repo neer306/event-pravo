@@ -4,18 +4,37 @@ import Input from "../Input/Input";
 import data from '../../data/data.json';
 import Event from "../Event/Event";
 import Pagination from "../Pagination/Pagination";
+import { monthNames } from '../../constants';
+import Slider from '../Slider/Slider';
+import { debounce } from '../../utils';
 
-const monthNames = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь",
-    "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"
-];
-const eventsPerPage = 5;
-
+const EventsPerPage = 5;
+const DeviceWidthBreakpoint = 1023;
 
 class Content extends Component {
 
     state = {
         currentPage: 1,
+        windowLength: 3,
     };
+
+    updateDimensions() {
+        this.setState({
+            windowLength: window.innerWidth > DeviceWidthBreakpoint ? 3 : 2
+        });
+    }
+
+    componentWillMount() {
+        this.updateDimensions();
+    }
+
+    componentDidMount() {
+        window.addEventListener("resize", debounce(this.updateDimensions.bind(this),600));
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener("resize", debounce(this.updateDimensions.bind(this), 600));
+    }
 
     render() {
         const events = data.events.map((event, index) => {
@@ -53,15 +72,49 @@ class Content extends Component {
                 </div>
 
                 <div className={'events'}>
-                    { events.slice((this.state.currentPage * eventsPerPage) - eventsPerPage, this.state.currentPage * eventsPerPage) }
+                    { events.slice((this.state.currentPage * EventsPerPage) - EventsPerPage, this.state.currentPage * EventsPerPage) }
                 </div>
 
                 <Pagination
                     total={events.length}
-                    limit={eventsPerPage}
+                    limit={EventsPerPage}
                     currentPage={this.state.currentPage}
                     changePageHandler={this.changePage.bind(this)}
                 />
+                <br/>
+                <h3>Право.ru рекомендует</h3>
+                <Slider offset={2} windowLength={this.state.windowLength}>
+                    <div className={'recommend-item'}>
+                        <a className={'recommend-item__link'} href='#'>
+                            Семинар "Планирование передачи состояния по наследству и наследственные споры"
+                        </a>
+                        <span>11 февраля</span>
+                    </div>
+                    <div className={'recommend-item'}>
+                        <a className={'recommend-item__link'} href='#'>
+                            XVI международная научно-практическая конференция "Ковалевские чтения 2019", Екатеринбург
+                        </a>
+                        <span>14 февраля</span>
+                    </div>
+                    <div className={'recommend-item'}>
+                        <a className={'recommend-item__link'} href='#'>
+                            Банкротство юридических лиц и граждан: анализ актуальных новелл законодательства и практики применения
+                        </a>
+                        <span>21 февраля</span>
+                    </div>
+                    <div className={'recommend-item'}>
+                        <a className={'recommend-item__link'} href='#'>
+                            Семинар "Поставка: основные проблемы договорной работы"
+                        </a>
+                        <span>28 февраля</span>
+                    </div>
+                    <div className={'recommend-item'}>
+                        <a className={'recommend-item__link'} href='#'>
+                            Онлайн-курс для юристов «Юридический Due Diligence»
+                        </a>
+                        <span>11 марта</span>
+                    </div>
+                </Slider>
             </div>
         );
     }

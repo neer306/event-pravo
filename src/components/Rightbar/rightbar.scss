@@ -17,3 +17,27 @@
 .rightbar__form {
     margin: 0 0 32px;
 }
+
+.rightbar__banner-img-m {
+    display: none;
+    width: 100%;
+}
+
+@media (max-width: 1023px) {
+    .rightbar {
+        margin-top: 32px;
+        padding: 0;
+    }
+
+    .rightbar__banner {
+        width: 100%;
+    }
+
+    .rightbar__banner-img {
+        display: none;
+    }
+
+    .rightbar__banner-img-m {
+        display: block;
+    }
+}
