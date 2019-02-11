@@ -8,13 +8,21 @@
     cursor: pointer;
     display: inline-block;
     vertical-align: top;
-    padding: 0 9px;
     height: 24px;
     background-color: #f4f4f7;
     color: #292D38;
     text-decoration: none;
     font: 12px/24px Arial, sans-serif;
     transition: all .5s ease;
+
+    a {
+        padding: 0 9px;
+        display: block;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
 
     &:hover {
         background: #e5e8e8;
@@ -23,7 +31,11 @@
     &_active {
         background-color: #1aacff;
         cursor: default;
-        color: #FFF;
+
+        a {
+            color: #FFF;
+
+        }
 
         &:hover {
             background-color: #1aacff;

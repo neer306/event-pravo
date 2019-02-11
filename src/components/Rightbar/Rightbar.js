@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Input from "../Input/Input";
-import './rightbar.scss';
 import Button from "../Button/Button";
+import './rightbar.scss';
 
 
 class Rightbar extends Component {

@@ -2,9 +2,9 @@ import React from 'react';
 import './input.scss';
 
 
-const Input = ({ placeholder, type }) => {
+const Input = ({ handleOnChange, ...rest }) => {
     return (
-        <input className={'input'} type={type} placeholder={placeholder}/>
+        <input className={'input'} {...rest} onChange={handleOnChange}/>
     );
 };
 

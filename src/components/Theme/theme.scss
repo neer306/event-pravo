@@ -1,0 +1,27 @@
+.theme {
+    position: relative;
+    overflow: hidden;
+    margin: 0 0 65px;
+}
+
+.theme__title {
+    position: absolute;
+    bottom: 17px;
+    left: 0;
+    padding: 22px 24px;
+    max-width: 415px;
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, 0.75);
+    font-weight: 200;
+
+    a {
+        display: block;
+        color: #FFF;
+        text-decoration: none;
+    }
+}
+
+.theme__img {
+    width: 100%;
+    display: block;
+}

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import './content.scss';
 import Input from "../Input/Input";
 import data from '../../data/data.json';
@@ -16,16 +17,19 @@ class Content extends Component {
     state = {
         currentPage: 1,
         windowLength: 3,
+        searchQuery: '',
+        searchValue: '',
     };
-
-    updateDimensions() {
-        this.setState({
-            windowLength: window.innerWidth > DeviceWidthBreakpoint ? 3 : 2
-        });
-    }
 
     componentWillMount() {
         this.updateDimensions();
+        this.changePage(this.props.page ? parseInt(this.props.page, 10) : 1);
+
+        if (this.props.search) {
+            this.setState({
+                searchQuery: this.props.search,
+            });
+        }
     }
 
     componentDidMount() {
@@ -36,22 +40,34 @@ class Content extends Component {
         window.removeEventListener("resize", debounce(this.updateDimensions.bind(this), 600));
     }
 
+    componentWillReceiveProps(nextProps, nextContext) {
+        if (nextProps.page) {
+            this.changePage(parseInt(nextProps.page, 10))
+        }
+    }
+
     render() {
-        const events = data.events.map((event, index) => {
-            const isSameMonth = index && new Date(event.date).getMonth() === new Date(data.events[index -1].date).getMonth();
-            if (isSameMonth) {
+        const searchRegExp = new RegExp(this.state.searchQuery, 'g');
+        const applySearch = (name) => {
+            return searchRegExp.test(name);
+        };
+        const events = data.events
+            .filter(event => applySearch(event.title))
+            .map((event, index) => {
+                const isSameMonth = index && new Date(event.date).getMonth() === new Date(data.events[index -1].date).getMonth();
+                if (isSameMonth) {
+                    return (
+                        <div key={index}>
+                            <Event key={index} event={event}/>
+                        </div>
+                    )
+                }
                 return (
                     <div key={index}>
-                        <Event key={index} event={event}/>
+                        <h3>{ monthNames[new Date(event.date).getMonth()] }</h3>
+                        <Event event={event}/>
                     </div>
-                )
-            }
-            return (
-                <div key={index}>
-                    <h3>{ monthNames[new Date(event.date).getMonth()] }</h3>
-                    <Event event={event}/>
-                </div>
-            );
+                );
         });
 
         return (
@@ -66,8 +82,13 @@ class Content extends Component {
                 </div>
 
                 <div className={'search'}>
-                    <form className={'search__form'}>
-                        <Input placeholder={'Поиск мероприятия'}/>
+                    <form action={'/'} className={'search__form'}>
+                        <Input
+                            name={'search'}
+                            placeholder={'Поиск мероприятия'}
+                            value={this.state.searchValue}
+                            handleOnChange={this.handleSearch.bind(this)}
+                        />
                     </form>
                 </div>
 
@@ -75,12 +96,11 @@ class Content extends Component {
                     { events.slice((this.state.currentPage * EventsPerPage) - EventsPerPage, this.state.currentPage * EventsPerPage) }
                 </div>
 
-                <Pagination
+                { events.length ? <Pagination
                     total={events.length}
                     limit={EventsPerPage}
                     currentPage={this.state.currentPage}
-                    changePageHandler={this.changePage.bind(this)}
-                />
+                /> : null }
                 <br/>
                 <h3>Право.ru рекомендует</h3>
                 <Slider offset={2} windowLength={this.state.windowLength}>
@@ -124,6 +144,18 @@ class Content extends Component {
             currentPage: page
         });
     };
+
+    updateDimensions() {
+        this.setState({
+            windowLength: window.innerWidth > DeviceWidthBreakpoint ? 3 : 2
+        });
+    }
+
+    handleSearch(event) {
+        this.setState({
+            searchValue: event.target.value,
+        });
+    }
 }
 
 export default Content;
