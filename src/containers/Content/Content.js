@@ -7,7 +7,8 @@ import Theme from "../../components/Theme/Theme";
 import SearchForm from "../../components/SearchForm/SearchForm";
 
 import Recommendation from "../../components/Recommendation/Recommendation";
-// import EventsList from "../../components/EventsList/EventsList";
+import EventsList from "../../components/EventsList/EventsList";
+import Pagination from "../../components/Pagination/Pagination";
 
 const DeviceWidthBreakpoint = 1023;
 export const EventsPerPage = 5;
@@ -60,10 +61,6 @@ class Content extends Component {
                             searchValue={ this.state.searchValue }
                             handleSearch={this.handleSearch.bind(this)}
                 />
-
-                <div className={'events'}>
-                    { events.slice((this.state.currentPage * EventsPerPage) - EventsPerPage, this.state.currentPage * EventsPerPage) }
-                </div>
                 <EventsList currentPage={this.state.currentPage} eventsPerPage={EventsPerPage} events={events} />
 
                 { events.length ? <Pagination
@@ -72,7 +69,7 @@ class Content extends Component {
                     currentPage={this.state.currentPage}
                 /> : null }
 
-                <Recommendation/>
+                <Recommendation windowLength={this.state.windowLength} offset={2}/>
             </div>
         );
     }

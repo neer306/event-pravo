@@ -4,6 +4,7 @@ import queryString from 'query-string';
 
 import Header from "./Header/Header";
 import Content from "../containers/Content/Content";
+// import Content from "./Content/Content";
 import Rightbar from "./Rightbar/Rightbar";
 import './layout.scss';
 

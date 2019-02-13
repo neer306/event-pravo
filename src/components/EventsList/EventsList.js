@@ -1,12 +1,12 @@
 import React from "react";
 
+import Event from "../Event/Event";
 import './events-list.scss';
 import { monthNames } from "../../constants";
-import Event from "../Event/Event";
 
 
 const eventsRepresent = events => {
-    events.map((event, index) => {
+    return events.map((event, index) => {
         const isSameMonth = index && new Date(event.date).getMonth() === new Date(events[index - 1].date).getMonth();
         if (isSameMonth) {
             return (

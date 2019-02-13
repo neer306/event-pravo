@@ -1,6 +1,5 @@
-import Slider from "../../containers/Content/Content";
 import React from "react";
-
+import Slider from "../Slider/Slider";
 import './recommendation.scss';
 
 const Recommendation = ({ windowLength, offset }) => {
